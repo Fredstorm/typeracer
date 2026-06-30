@@ -61,13 +61,18 @@ git push -u origin main
 
    If the repo is not a user site, use the project URL: `https://YOUR_USERNAME.github.io/typeracer` (no trailing slash).
 
-### 3. Configure GitHub Pages
+### 3. Turn on GitHub Pages
 
 1. On GitHub: **Settings → Secrets and variables → Actions → Variables**.
 2. Add variable **`TYPERACER_SERVER_URL`** = your Render URL (e.g. `https://typeracer-api.onrender.com`).
 3. **Settings → Pages → Build and deployment**:
-   - Source: **GitHub Actions**
-4. Push to `main` (or run the **Deploy to GitHub Pages** workflow manually).
+   - **Source** must be **GitHub Actions** (not “Deploy from a branch”).
+   - If you only see “Deploy from a branch”, save that once, then switch the source to **GitHub Actions**.
+4. Push to `main` (or re-run the **Deploy to GitHub Pages** workflow under Actions).
+
+If deploy fails with `Failed to create deployment (status: 404)`, the source is almost always still set to a branch instead of GitHub Actions. Fix it here:
+
+`https://github.com/YOUR_USERNAME/typeracer/settings/pages`
 
 Your site will be at:
 
