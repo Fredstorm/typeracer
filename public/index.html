@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypeRacer — Multiplayer</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+    <main class="app">
+      <header class="hero">
+        <div class="logo">Type<span>Racer</span></div>
+        <p class="tagline">Race friends. Pick your rules. First to finish wins.</p>
+      </header>
+
+      <section id="join-screen" class="panel">
+        <h2>Join a Race</h2>
+        <form id="join-form">
+          <label>
+            Your name
+            <input id="player-name" type="text" maxlength="20" placeholder="Enter your name" required />
+          </label>
+
+          <fieldset class="mode-picker">
+            <legend>Typing mode</legend>
+            <label class="mode-card">
+              <input type="radio" name="mode" value="strict" checked />
+              <div>
+                <strong>Strict</strong>
+                <span>For skilled typists. Every character must match exactly — spelling and punctuation perfect.</span>
+              </div>
+            </label>
+            <label class="mode-card">
+              <input type="radio" name="mode" value="forgiving" />
+              <div>
+                <strong>Relaxed</strong>
+                <span>For beginners. Typos are allowed — keep typing and reach the end to finish.</span>
+              </div>
+            </label>
+          </fieldset>
+
+          <div class="actions">
+            <button type="button" id="create-btn" class="btn primary">Create Room</button>
+            <div class="join-row">
+              <input id="room-code" type="text" maxlength="5" placeholder="ROOM" />
+              <button type="submit" class="btn secondary">Join Room</button>
+            </div>
+          </div>
+        </form>
+        <p id="join-error" class="error hidden"></p>
+      </section>
+
+      <section id="lobby-screen" class="panel hidden">
+        <div class="lobby-header">
+          <div>
+            <p class="label">Room code</p>
+            <h2 id="lobby-code">----</h2>
+          </div>
+          <button id="copy-code-btn" class="btn ghost">Copy code</button>
+        </div>
+
+        <p class="lobby-hint">Share the room code with friends. Need at least 2 players to start.</p>
+
+        <ul id="player-list" class="player-list"></ul>
+
+        <div class="lobby-actions">
+          <button id="start-btn" class="btn primary hidden">Start Race</button>
+          <button id="leave-btn" class="btn ghost">Leave Room</button>
+        </div>
+      </section>
+
+      <section id="race-screen" class="panel hidden">
+        <div class="race-meta">
+          <div id="countdown" class="countdown hidden"></div>
+          <div class="race-stats">
+            <div><span>WPM</span><strong id="stat-wpm">0</strong></div>
+            <div><span>Accuracy</span><strong id="stat-accuracy">100%</strong></div>
+            <div><span>Progress</span><strong id="stat-progress">0%</strong></div>
+          </div>
+        </div>
+
+        <div id="paragraph-display" class="paragraph-display"></div>
+
+        <textarea
+          id="typing-input"
+          class="typing-input"
+          rows="4"
+          placeholder="Waiting for race to start..."
+          disabled
+          spellcheck="false"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+        ></textarea>
+
+        <div class="scoreboard">
+          <h3>Live standings</h3>
+          <ul id="standings-list"></ul>
+        </div>
+      </section>
+
+      <section id="results-screen" class="panel hidden">
+        <div class="trophy">🏆</div>
+        <h2 id="winner-text">Race complete!</h2>
+        <ul id="results-list" class="player-list"></ul>
+        <button id="play-again-btn" class="btn primary">Back to Home</button>
+      </section>
+    </main>
+
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

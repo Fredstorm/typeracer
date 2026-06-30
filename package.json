@@ -1,0 +1,15 @@
+{
+  "name": "typeracer",
+  "version": "1.0.0",
+  "description": "Multiplayer typing race with strict and forgiving modes",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build:pages": "node scripts/build-pages.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  }
+}
